@@ -106,7 +106,7 @@ app.post('/api/reward/ad', auth, async (req, res) => {
 });// 4) Withdraw request (coins)
 app.post('/api/withdraw', auth, async (req, res) => {
   const { method, account, amount_coins } = req.body || {};
-  if (!method  !account  !amount_coins) return res.status(400).json({ error: 'missing fields' });
+  if (!method || !account || !amount_coins) { return res.status(400).json({ error: 'missing fields' }); }
 
   const COINS_PER_USDT = Number(process.env.COINS_PER_USDT || 100);
   const MIN_USDT = Number(process.env.MIN_WITHDRAW_USDT || 20);
