@@ -113,7 +113,7 @@ app.post('/api/withdraw', auth, async (req, res) => {
   const minCoins = COINS_PER_USDT * MIN_USDT;
 
   const { data: user } = await supabase.from('users').select('*').eq('id', req.uid).single();
-  if ((amount_coins|0) < minCoins) return res.status(400).json({ error: min ${minCoins} coins });
+  if ((amount_coins|0) < minCoins) return res.status(400).json({ error: `min ${minCoins} coins` });
   if ((user.balance||0) < amount_coins) return res.status(400).json({ error: 'insufficient balance' });
 
   await supabase.from('withdraw_requests').insert({
