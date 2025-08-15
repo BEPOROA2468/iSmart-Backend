@@ -26,7 +26,7 @@ function verifyTelegramInitData(initData) {
   const { hash, ...data } = parsed;
   const dataCheckString = Object.keys(data)
     .sort()
-    .map(k => ${k}=${data[k]})
+    .map(k => `${k}=${data[k]}`)
     .join('\n');
 
   const hmac = crypto.createHmac('sha256', SECRET_KEY).update(dataCheckString).digest('hex');
